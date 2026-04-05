@@ -138,6 +138,22 @@ const isOpen = ref(false)
 </BottomSheet>
 ```
 
+### Слот Cover
+
+Полноразмерный фон под header/content/footer (фото, градиент, карта):
+
+```vue
+<BottomSheet ref="sheet" :snap-points="[300, '60%', '100%']" :morphing="true">
+  <template #cover>
+    <img src="/profile-bg.jpg" style="width: 100%; height: 100%; object-fit: cover" />
+  </template>
+  <template #header>
+    <h3 style="color: white">Профиль</h3>
+  </template>
+  Контент поверх фонового изображения
+</BottomSheet>
+```
+
 ### Nuxt
 
 Оберните в `<ClientOnly>`:
@@ -165,9 +181,11 @@ const isOpen = ref(false)
 | `teleportTo` | `string \| RendererElement` | `'body'` | Цель телепорта |
 | `teleportDefer` | `boolean` | `false` | Отложенный телепорт (Vue 3.5+) |
 | `forceMount` | `boolean` | `false` | Держать в DOM при закрытии |
+| `sheetClass` | `string` | `''` | CSS-класс контейнера шита |
 | `headerClass` | `string` | `''` | CSS-класс заголовка |
 | `contentClass` | `string` | `''` | CSS-класс контента |
 | `footerClass` | `string` | `''` | CSS-класс подвала |
+| `scrollClass` | `string` | `''` | CSS-класс скролл-контейнера |
 | `morphing` | `boolean \| MorphingConfig` | `false` | Морфинг в стиле iOS |
 | `springConfig` | `SpringConfig` | `undefined` | Настройки пружинной физики |
 | `modelValue` | `boolean` | `undefined` | Привязка v-model |
@@ -197,21 +215,69 @@ const isOpen = ref(false)
 
 ## Стилизация
 
-Переопределяйте через CSS-переменные:
+Все стили библиотеки обёрнуты в `@layer vsbs` — ваш CSS всегда побеждает без `!important`.
+
+### CSS-переменные
 
 ```css
-.my-sheet {
+[data-vsbs-sheet] {
+  /* Цвета */
   --vsbs-backdrop-bg: rgba(0, 0, 0, 0.5);
   --vsbs-background: #fff;
-  --vsbs-border-radius: 16px;
-  --vsbs-max-width: 640px;
-  --vsbs-padding-x: 16px;
-  --vsbs-handle-background: rgba(0, 0, 0, 0.28);
   --vsbs-shadow-color: rgba(89, 89, 89, 0.2);
   --vsbs-border-color: rgba(46, 59, 66, 0.125);
   --vsbs-outer-border-color: transparent;
+
+  /* Размеры */
+  --vsbs-border-radius: 16px;
+  --vsbs-max-width: 640px;
+  --vsbs-padding-x: 16px;
+
+  /* Ручка перетаскивания */
+  --vsbs-handle-background: rgba(0, 0, 0, 0.28);
+  --vsbs-handle-width: 36px;
+  --vsbs-handle-height: 4px;
+  --vsbs-handle-top: 8px;
+  --vsbs-handle-radius: 2px;
+
+  /* Отступы секций */
+  --vsbs-header-padding: 20px var(--vsbs-padding-x, 16px) 8px;
+  --vsbs-footer-padding: 16px var(--vsbs-padding-x, 16px);
+  --vsbs-content-padding: 8px var(--vsbs-padding-x, 16px);
+  --vsbs-content-display: grid;
 }
 ```
+
+### Прямое переопределение селекторов
+
+Благодаря `@layer vsbs` любой ваш CSS автоматически побеждает:
+
+```css
+[data-vsbs-header]::before {
+  width: 48px;
+  height: 6px;
+}
+
+[data-vsbs-content] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+```
+
+### Справочник data-атрибутов
+
+| Атрибут | Элемент |
+|---|---|
+| `data-vsbs-sheet` | Контейнер шита |
+| `data-vsbs-backdrop` | Оверлей фона |
+| `data-vsbs-header` | Заголовок (с ручкой) |
+| `data-vsbs-scroll` | Скролл-контейнер |
+| `data-vsbs-content` | Область контента |
+| `data-vsbs-footer` | Подвал |
+| `data-vsbs-cover` | Контейнер слота cover |
+| `data-vsbs-morphing` | Добавляется при морфинге |
+| `data-vsbs-shadow` | Добавляется в non-blocking |
 
 ## Лицензия
 

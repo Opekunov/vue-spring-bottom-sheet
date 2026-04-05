@@ -138,6 +138,22 @@ Requires at least 2 snap points (ideally 3: compact / expanded / fullscreen).
 </BottomSheet>
 ```
 
+### Cover Slot
+
+Full-bleed background behind header/content/footer (e.g. photo, gradient, map):
+
+```vue
+<BottomSheet ref="sheet" :snap-points="[300, '60%', '100%']" :morphing="true">
+  <template #cover>
+    <img src="/profile-bg.jpg" style="width: 100%; height: 100%; object-fit: cover" />
+  </template>
+  <template #header>
+    <h3 style="color: white">User Profile</h3>
+  </template>
+  Content on top of the cover image
+</BottomSheet>
+```
+
 ### Nuxt
 
 Wrap in `<ClientOnly>`:
@@ -165,9 +181,11 @@ Wrap in `<ClientOnly>`:
 | `teleportTo` | `string \| RendererElement` | `'body'` | Teleport target |
 | `teleportDefer` | `boolean` | `false` | Defer teleport (Vue 3.5+) |
 | `forceMount` | `boolean` | `false` | Keep in DOM when closed |
+| `sheetClass` | `string` | `''` | Sheet container CSS class |
 | `headerClass` | `string` | `''` | Header CSS class |
 | `contentClass` | `string` | `''` | Content CSS class |
 | `footerClass` | `string` | `''` | Footer CSS class |
+| `scrollClass` | `string` | `''` | Scroll container CSS class |
 | `morphing` | `boolean \| MorphingConfig` | `false` | iOS-like morphing |
 | `springConfig` | `SpringConfig` | `undefined` | Spring physics config |
 | `modelValue` | `boolean` | `undefined` | v-model binding |
@@ -197,21 +215,73 @@ Wrap in `<ClientOnly>`:
 
 ## Styling
 
-Override via CSS custom properties:
+All library styles are wrapped in `@layer vsbs`, so your CSS always wins — no `!important` needed.
+
+### CSS Custom Properties
 
 ```css
-.my-sheet {
+[data-vsbs-sheet] {
+  /* Colors & background */
   --vsbs-backdrop-bg: rgba(0, 0, 0, 0.5);
   --vsbs-background: #fff;
-  --vsbs-border-radius: 16px;
-  --vsbs-max-width: 640px;
-  --vsbs-padding-x: 16px;
-  --vsbs-handle-background: rgba(0, 0, 0, 0.28);
   --vsbs-shadow-color: rgba(89, 89, 89, 0.2);
   --vsbs-border-color: rgba(46, 59, 66, 0.125);
   --vsbs-outer-border-color: transparent;
+
+  /* Layout */
+  --vsbs-border-radius: 16px;
+  --vsbs-max-width: 640px;
+  --vsbs-padding-x: 16px;
+
+  /* Drag handle */
+  --vsbs-handle-background: rgba(0, 0, 0, 0.28);
+  --vsbs-handle-width: 36px;
+  --vsbs-handle-height: 4px;
+  --vsbs-handle-top: 8px;
+  --vsbs-handle-radius: 2px;
+
+  /* Section padding */
+  --vsbs-header-padding: 20px var(--vsbs-padding-x, 16px) 8px;
+  --vsbs-header-empty-padding: 14px var(--vsbs-padding-x, 16px) 10px;
+  --vsbs-footer-padding: 16px var(--vsbs-padding-x, 16px);
+  --vsbs-content-padding: 8px var(--vsbs-padding-x, 16px);
+  --vsbs-content-display: grid;
 }
 ```
+
+### Direct Selector Overrides
+
+Since styles use `@layer vsbs`, any unlayered CSS you write automatically wins:
+
+```css
+/* Override the drag handle */
+[data-vsbs-header]::before {
+  width: 48px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* Custom content layout */
+[data-vsbs-content] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+```
+
+### Data Attributes Reference
+
+| Attribute | Element |
+|---|---|
+| `data-vsbs-sheet` | Sheet container |
+| `data-vsbs-backdrop` | Backdrop overlay |
+| `data-vsbs-header` | Header (with drag handle) |
+| `data-vsbs-scroll` | Scroll container |
+| `data-vsbs-content` | Content area |
+| `data-vsbs-footer` | Footer |
+| `data-vsbs-cover` | Cover slot container |
+| `data-vsbs-morphing` | Added when morphing enabled |
+| `data-vsbs-shadow` | Added when non-blocking |
 
 ## License
 

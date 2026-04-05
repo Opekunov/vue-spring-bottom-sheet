@@ -35,6 +35,8 @@ export interface BottomSheetProps {
   headerClass?: string
   contentClass?: string
   footerClass?: string
+  sheetClass?: string
+  scrollClass?: string
   /**
    * Enable iOS 26-like morphing behavior.
    * When enabled, the sheet morphs from a floating card (compact)
