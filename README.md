@@ -47,16 +47,26 @@
 
 ```bash
 # npm
-npm install @douxcode/vue-spring-bottom-sheet
+npm install opekunov/vue-spring-bottom-sheet
 
 # bun
-bun add @douxcode/vue-spring-bottom-sheet
+bun add opekunov/vue-spring-bottom-sheet
 
 # yarn
-yarn add @douxcode/vue-spring-bottom-sheet
+yarn add opekunov/vue-spring-bottom-sheet
 
 # pnpm
-pnpm add @douxcode/vue-spring-bottom-sheet
+pnpm add opekunov/vue-spring-bottom-sheet
+```
+
+This installs the package directly from the GitHub repository. You can also pin a specific branch or tag:
+
+```bash
+# specific branch
+npm install opekunov/vue-spring-bottom-sheet#master
+
+# specific tag
+npm install opekunov/vue-spring-bottom-sheet#v3.2.0
 ```
 
 ## Usage

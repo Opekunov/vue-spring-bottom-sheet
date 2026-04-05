@@ -47,16 +47,26 @@
 
 ```bash
 # npm
-npm install @douxcode/vue-spring-bottom-sheet
+npm install opekunov/vue-spring-bottom-sheet
 
 # bun
-bun add @douxcode/vue-spring-bottom-sheet
+bun add opekunov/vue-spring-bottom-sheet
 
 # yarn
-yarn add @douxcode/vue-spring-bottom-sheet
+yarn add opekunov/vue-spring-bottom-sheet
 
 # pnpm
-pnpm add @douxcode/vue-spring-bottom-sheet
+pnpm add opekunov/vue-spring-bottom-sheet
+```
+
+Пакет устанавливается напрямую из GitHub-репозитория. Можно указать конкретную ветку или тег:
+
+```bash
+# конкретная ветка
+npm install opekunov/vue-spring-bottom-sheet#master
+
+# конкретный тег
+npm install opekunov/vue-spring-bottom-sheet#v3.2.0
 ```
 
 ## Использование
