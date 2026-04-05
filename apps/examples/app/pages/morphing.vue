@@ -115,7 +115,7 @@ const demos = [
           <h3 class="font-semibold text-sm">{{ demo.title }}</h3>
         </template>
         <p class="text-xs text-muted mb-3">{{ demo.description }}</p>
-        <UButton size="sm" @click="demo.ref?.open()">
+        <UButton size="sm" @click="demo.ref.value?.open()">
           Open
         </UButton>
       </UCard>
