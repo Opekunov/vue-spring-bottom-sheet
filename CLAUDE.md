@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-**Vue Spring Bottom Sheet** (`@douxcode/vue-spring-bottom-sheet`) is a Vue 3 bottom sheet component library featuring spring physics animations, iOS-like morphing behavior, drag gestures, snap points, and accessibility support.
+**Vue Spring Bottom Sheet** (`@opekunov/vue-spring-bottom-sheet`) is a Vue 3 bottom sheet component library featuring spring physics animations, iOS-like morphing behavior, drag gestures, snap points, and accessibility support.
 
 - **Repository**: `opekunov/vue-spring-bottom-sheet`
 - **License**: MIT
-- **Published as**: `@douxcode/vue-spring-bottom-sheet` on npm
+- **Published as**: `@opekunov/vue-spring-bottom-sheet` on npm
 - **Requires**: Vue >= 3.3
 
 ## Monorepo Structure
@@ -73,7 +73,7 @@ bun run format               # prettier --write src/
 
 - **Default export**: `BottomSheet` component
 - **Named exports**: `useSpring`, `useMorphing`, all types from `types.ts`
-- **CSS**: Separate import via `@douxcode/vue-spring-bottom-sheet/dist/style.css`
+- **CSS**: Separate import via `@opekunov/vue-spring-bottom-sheet/dist/style.css`
 
 ### Composables
 

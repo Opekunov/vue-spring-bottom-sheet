@@ -4,9 +4,9 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@douxcode/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/v/@douxcode/vue-spring-bottom-sheet.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/@douxcode/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/dm/@douxcode/vue-spring-bottom-sheet.svg" alt="npm downloads"></a>
-  <a href="https://github.com/opekunov/vue-spring-bottom-sheet/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@douxcode/vue-spring-bottom-sheet.svg" alt="license"></a>
+  <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/v/@opekunov/vue-spring-bottom-sheet.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/dm/@opekunov/vue-spring-bottom-sheet.svg" alt="npm downloads"></a>
+  <a href="https://github.com/opekunov/vue-spring-bottom-sheet/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@opekunov/vue-spring-bottom-sheet.svg" alt="license"></a>
 </p>
 
 <p align="center">
@@ -47,26 +47,16 @@
 
 ```bash
 # npm
-npm install opekunov/vue-spring-bottom-sheet
+npm install @opekunov/vue-spring-bottom-sheet
 
 # bun
-bun add opekunov/vue-spring-bottom-sheet
+bun add @opekunov/vue-spring-bottom-sheet
 
 # yarn
-yarn add opekunov/vue-spring-bottom-sheet
+yarn add @opekunov/vue-spring-bottom-sheet
 
 # pnpm
-pnpm add opekunov/vue-spring-bottom-sheet
-```
-
-Пакет устанавливается напрямую из GitHub-репозитория. Можно указать конкретную ветку или тег:
-
-```bash
-# конкретная ветка
-npm install opekunov/vue-spring-bottom-sheet#master
-
-# конкретный тег
-npm install opekunov/vue-spring-bottom-sheet#v3.2.0
+pnpm add @opekunov/vue-spring-bottom-sheet
 ```
 
 ## Использование
@@ -76,8 +66,8 @@ npm install opekunov/vue-spring-bottom-sheet#v3.2.0
 ```vue
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import BottomSheet from '@douxcode/vue-spring-bottom-sheet'
-import '@douxcode/vue-spring-bottom-sheet/dist/style.css'
+import BottomSheet from '@opekunov/vue-spring-bottom-sheet'
+import '@opekunov/vue-spring-bottom-sheet/dist/style.css'
 
 const sheet = useTemplateRef('sheet')
 </script>
@@ -96,8 +86,8 @@ const sheet = useTemplateRef('sheet')
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import BottomSheet from '@douxcode/vue-spring-bottom-sheet'
-import '@douxcode/vue-spring-bottom-sheet/dist/style.css'
+import BottomSheet from '@opekunov/vue-spring-bottom-sheet'
+import '@opekunov/vue-spring-bottom-sheet/dist/style.css'
 
 const isOpen = ref(false)
 </script>
