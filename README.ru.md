@@ -3,6 +3,9 @@
   <p align="center">Современный и производительный компонент bottom sheet для Vue 3 с пружинной физикой, морфингом и жестами</p>
 </p>
 
+> [!WARNING]
+> **Это персональный форк**, который дорабатывается под личные нужды с помощью LLM. Может содержать баги, незавершённые фичи или ломающие изменения, которых нет в оригинале. За оригинальной, стабильной и поддерживаемой сообществом версией обращайтесь в [megaarmos/vue-spring-bottom-sheet](https://github.com/megaarmos/vue-spring-bottom-sheet).
+
 <p align="center">
   <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/v/@opekunov/vue-spring-bottom-sheet.svg" alt="npm version"></a>
   <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/dm/@opekunov/vue-spring-bottom-sheet.svg" alt="npm downloads"></a>

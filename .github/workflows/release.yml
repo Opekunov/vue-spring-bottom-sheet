@@ -20,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -31,46 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-
-      - name: Debug npm OIDC token exchange
-        run: |
-          set +e
-          echo "=== 1) Does the package exist on npm registry? ==="
-          curl -sS -o /tmp/pkg.json -w "HTTP %{http_code}\n" \
-            "https://registry.npmjs.org/@opekunov/vue-spring-bottom-sheet"
-          echo "First 500 chars of response:"
-          head -c 500 /tmp/pkg.json
-          echo ""
-          echo ""
-          echo "Package name from registry: $(jq -r .name /tmp/pkg.json 2>/dev/null || echo 'parse failed')"
-          echo "Latest version: $(jq -r '."dist-tags".latest' /tmp/pkg.json 2>/dev/null || echo 'parse failed')"
-          echo ""
-
-          echo "=== 2) Trying alternative scope (no @opekunov, just vue-spring-bottom-sheet) ==="
-          curl -sS -o /tmp/pkg2.json -w "HTTP %{http_code}\n" \
-            "https://registry.npmjs.org/vue-spring-bottom-sheet"
-          echo "Name: $(jq -r .name /tmp/pkg2.json 2>/dev/null || echo 'parse failed')"
-          echo ""
-
-          echo "=== 3) Get OIDC token ==="
-          TOKEN=$(curl -sSL \
-            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            -H "Accept: application/json" \
-            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" | jq -r .value)
-          echo "Token obtained ($(echo -n "$TOKEN" | wc -c) chars)"
-          echo ""
-
-          echo "=== 4) OIDC exchange with JWT in Authorization header (correct way) ==="
-          PKG_ENC="%40opekunov%2Fvue-spring-bottom-sheet"
-          URL="https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${PKG_ENC}"
-          echo "URL: $URL"
-          curl -sS -o /tmp/exch.txt -w "HTTP %{http_code}\n" \
-            -X POST "$URL" \
-            -H "Authorization: Bearer $TOKEN" \
-            -H "Content-Type: application/json"
-          echo "Response body:"
-          cat /tmp/exch.txt | head -c 2000
-          echo ""
 
       - name: Run semantic-release
         env:

@@ -3,6 +3,9 @@
   <p align="center">Modern, performant bottom sheet component for Vue 3 with spring physics, morphing & gestures</p>
 </p>
 
+> [!WARNING]
+> **This is a personal fork** maintained for private needs and developed with the help of LLMs. It may contain bugs, unfinished features, or breaking changes that don't exist in the original. For the original, stable, community-maintained version please use [megaarmos/vue-spring-bottom-sheet](https://github.com/megaarmos/vue-spring-bottom-sheet).
+
 <p align="center">
   <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/v/@opekunov/vue-spring-bottom-sheet.svg" alt="npm version"></a>
   <a href="https://www.npmjs.com/package/@opekunov/vue-spring-bottom-sheet"><img src="https://img.shields.io/npm/dm/@opekunov/vue-spring-bottom-sheet.svg" alt="npm downloads"></a>
