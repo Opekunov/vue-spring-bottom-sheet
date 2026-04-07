@@ -32,31 +32,44 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Debug OIDC claims
+      - name: Debug npm OIDC token exchange
         run: |
-          set -e
-          echo "=== OIDC env presence ==="
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL is set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
-          echo ""
+          set +e
           echo "=== Requesting OIDC token for npm audience ==="
-          RESPONSE=$(curl -sSL \
+          TOKEN=$(curl -sSL \
             -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             -H "Accept: application/json" \
-            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm")
-          TOKEN=$(echo "$RESPONSE" | jq -r .value)
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" | jq -r .value)
           if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
-            echo "Failed to obtain OIDC token. Raw response:"
-            echo "$RESPONSE"
-            exit 1
+            echo "Failed to obtain OIDC token"; exit 1
           fi
+          echo "OIDC token obtained ($(echo -n "$TOKEN" | wc -c) chars)"
           echo ""
-          echo "=== Decoded OIDC claims ==="
-          PAYLOAD=$(echo "$TOKEN" | cut -d. -f2)
-          # Pad base64
-          PAD=$(( 4 - ${#PAYLOAD} % 4 ))
-          if [ $PAD -ne 4 ]; then PAYLOAD="${PAYLOAD}$(printf '=%.0s' $(seq 1 $PAD))"; fi
-          echo "$PAYLOAD" | tr '_-' '/+' | base64 -d 2>/dev/null | jq .
+
+          # Try a few candidate package URL encodings — see which (if any) npm accepts
+          PKG_RAW="@opekunov/vue-spring-bottom-sheet"
+          PKG_ENC="%40opekunov%2Fvue-spring-bottom-sheet"
+
+          for PKG in "$PKG_RAW" "$PKG_ENC"; do
+            echo "=== Trying npm exchange for: $PKG ==="
+            URL="https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${PKG}"
+            echo "URL: $URL"
+            RESP=$(curl -sS -o /tmp/body.txt -w "HTTP %{http_code}\n" \
+              -X POST "$URL" \
+              -H "Content-Type: application/json" \
+              -d "{\"jwt\":\"$TOKEN\"}")
+            echo "$RESP"
+            echo "Response body:"
+            cat /tmp/body.txt | head -c 2000
+            echo ""
+            echo ""
+          done
+
+          echo "=== Trying npm trusted publisher info endpoint ==="
+          curl -sS -o /tmp/info.txt -w "HTTP %{http_code}\n" \
+            "https://registry.npmjs.org/-/package/${PKG_ENC}/access"
+          cat /tmp/info.txt | head -c 2000
+          echo ""
 
       - name: Run semantic-release
         env:
