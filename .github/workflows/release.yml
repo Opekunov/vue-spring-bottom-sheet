@@ -32,6 +32,32 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Debug OIDC claims
+        run: |
+          set -e
+          echo "=== OIDC env presence ==="
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL is set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
+          echo ""
+          echo "=== Requesting OIDC token for npm audience ==="
+          RESPONSE=$(curl -sSL \
+            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            -H "Accept: application/json" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm")
+          TOKEN=$(echo "$RESPONSE" | jq -r .value)
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+            echo "Failed to obtain OIDC token. Raw response:"
+            echo "$RESPONSE"
+            exit 1
+          fi
+          echo ""
+          echo "=== Decoded OIDC claims ==="
+          PAYLOAD=$(echo "$TOKEN" | cut -d. -f2)
+          # Pad base64
+          PAD=$(( 4 - ${#PAYLOAD} % 4 ))
+          if [ $PAD -ne 4 ]; then PAYLOAD="${PAYLOAD}$(printf '=%.0s' $(seq 1 $PAD))"; fi
+          echo "$PAYLOAD" | tr '_-' '/+' | base64 -d 2>/dev/null | jq .
+
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
