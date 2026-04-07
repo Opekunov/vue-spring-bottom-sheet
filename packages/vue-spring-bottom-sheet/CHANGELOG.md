@@ -1,3 +1,123 @@
+# 1.0.0 (2026-04-07)
+
+
+* Next ([#38](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/38)) ([34270e8](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/34270e88d8b49ddef80b2c57b729828a1113af19))
+
+
+### Bug Fixes
+
+* add delay to animation start in BottomSheet component ([10dc3ec](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/10dc3ec60d4f1c1d90661cef3f515d053a81ba79))
+* broken backdrop transition ([ed4fda5](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/ed4fda5fa15edf26d536eb489056ea133fb5ac15))
+* broken dragging when reaches last snap point ([db6461f](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/db6461f77caf7140f0d8beada44aee7ad92f97b8))
+* change windowSize from visual to inner; ([fbfa6d7](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/fbfa6d7560805ff261a6af145558326696d336fb))
+* code review fixes for useSpring and useMorphing ([#4](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/4)) ([9c13552](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/9c135523ab3cf99aee37a84e59c8f931cce69886))
+* compatiblity with motion-v 1.5.0 ([22358ff](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/22358ff15ac5c77d71b2aa0e1663c7fc56cd076b))
+* enhance drag gesture handling in BottomSheet component ([8086f6d](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/8086f6dff1ef00dca1d007d82f61b93dbc460af9))
+* extract drag logic into composable ([055bd63](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/055bd6361ce311c32b028f9ca7bb8fdcfb30f16a))
+* https://github.com/megaarmos/vue-spring-bottom-sheet/issues/22 ([4cbbbcf](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/4cbbbcf5bf392b11e4752b14230c265063445ae8))
+* https://github.com/megaarmos/vue-spring-bottom-sheet/issues/34 ([ece642f](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/ece642f6a25b0c80678c9e41d442a030b3f300eb))
+* point repository url to fork so semantic-release publishes correctly ([#6](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/6)) ([488386b](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/488386ba487a7272b5b7fe82aed8c71a2ab18613))
+* race condition when reopening bottom sheet during close animation ([#5](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/5)) ([eb2cb0e](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/eb2cb0e9e54d6499c08d61618780e7b62c7f8dc2))
+* remove initial y state to fix the first instance not working ([8445925](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/8445925fb1f4e711eea51decb24920a6bc5d8d74))
+* scroll behavior for single snap point; ([e85d177](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/e85d177bfb844b3a3dbe12d959a5d5f378de8b4b))
+* update export statement to remove file extension from types ([fd1d1bd](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/fd1d1bd225c59ef7d2361205d4a160e227fbb0a1))
+* update height calculations to use windowHeight ([6ecee8b](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/6ecee8b0d9e5d3cbcd263b54a1e6d23111bae553))
+
+
+### Features
+
+* add customizable header, content, and footer classes https://github.com/megaarmos/vue-spring-bottom-sheet/issues/20 ([fbb7b30](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/fbb7b301774803e51edfdce45a09cba3789bcea2))
+* add forceMount prop ([712e7f9](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/712e7f9245f5ecad92a7a86a962c664a9aeac988))
+* add initialSnapPoint prop for customizable starting position ([689c54d](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/689c54d99dd2090d646b2322833f8a0e27573841))
+* add iOS 26-like morphing bottom sheet with spring animations ([626df58](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/626df5879ee26551ec3c66c7e3435a863aafef9d))
+* add outer borders; ([e52a1a8](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/e52a1a843aa138e7d9ade29aee4be651a3655a8b))
+* add teleportTo and teleportDefer props; ([a656ea6](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/a656ea6db94080d370db85d9ed48649a89f93a16))
+* **snap:** added snapped emit event ([c387e95](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/c387e954141e1a1cd822dfb16283d21ec6815001))
+* drag inconsistencies and add keyboard avoidance ([3056eab](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/3056eab17a480a555e3653e1f26a69ccca6785ac))
+* enhance drag gesture handling ([9fd74bd](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/9fd74bdfd4c29a4cd9f5d23af42e17e0fbbba6d5))
+* new events; ([cf8490c](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/cf8490c814422cf5d5961f5f9d3986a52ee535df))
+* styling customization, cover slot, morphing fixes, docs ([#3](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/3)) ([69ec46c](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/69ec46c427894dda1757f1226531047a530f17ec))
+* swipe close threshold ([#35](https://github.com/Opekunov/vue-spring-bottom-sheet/issues/35)) ([3d553b5](https://github.com/Opekunov/vue-spring-bottom-sheet/commit/3d553b5e1c1779a326a1730b3ab26b864ca07b5b))
+
+
+### BREAKING CHANGES
+
+* removed motion-v dependency
+
+* chore(release): 3.0.0-next.1 [skip ci]
+
+# [3.0.0-next.1](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v2.6.0-next.1...v3.0.0-next.1) (2026-01-13)
+
+### Bug Fixes
+
+* ensure bottom sheet swipe-based snapping and closing only trigger when actually dragging the sheet, not scrolling content ([9c9fae9](https://github.com/megaarmos/vue-spring-bottom-sheet/commit/9c9fae986d59f3c2763660dade71fd0dd899d058))
+
+### BREAKING CHANGES
+
+* removed motion-v dependency
+
+* fix: https://github.com/megaarmos/vue-spring-bottom-sheet/issues/31
+
+* chore(release): 3.0.0-next.2 [skip ci]
+
+# [3.0.0-next.2](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.0.0-next.1...v3.0.0-next.2) (2026-01-14)
+
+### Bug Fixes
+
+* https://github.com/megaarmos/vue-spring-bottom-sheet/issues/31 ([f8cc5c1](https://github.com/megaarmos/vue-spring-bottom-sheet/commit/f8cc5c1f0d222ab9dca108133a44c2192178c040))
+
+* feat: update dependencies
+fix: typescript errors
+
+* chore(release): 3.0.0-next.3 [skip ci]
+
+# [3.0.0-next.3](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.0.0-next.2...v3.0.0-next.3) (2026-01-14)
+
+### Features
+
+* update dependencies ([a6b9a40](https://github.com/megaarmos/vue-spring-bottom-sheet/commit/a6b9a4038bd6ab186139f3dd5892d0b8b439596a))
+
+* fix: context menu disrupting mouse dragging
+
+* refactor: enhance bottom sheet functionality with drag gestures and focus management
+
+- Updated `BottomSheet.vue` to utilize new composables for better code organization and maintainability.
+
+* chore(release): 3.0.0-next.4 [skip ci]
+
+# [3.0.0-next.4](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.0.0-next.3...v3.0.0-next.4) (2026-01-14)
+
+### Bug Fixes
+
+* context menu disrupting mouse dragging ([afaeeed](https://github.com/megaarmos/vue-spring-bottom-sheet/commit/afaeeeda65b1d60adf9ec0ec829d5459e4e4fee1))
+
+* docs(README): updated docs
+chore: updated release config and package json
+
+* chore(release): 3.0.0-next.5 [skip ci]
+
+# [3.0.0-next.5](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.0.0-next.4...v3.0.0-next.5) (2026-01-22)
+
+* chore: update build and start scripts in package.json
+
+* chore: migrate to monorepo and update playground packages
+
+* fix: showSheet model does not trigger watch https://github.com/megaarmos/vue-spring-bottom-sheet/issues/37
+
+* chore: update semantic-release configuration for monorepo support and add workspace release settings
+
+* ci: remove unused plugins array from workspace release configuration
+
+* chore: add .npmrc configuration to disable workspaces update
+
+* chore(release): 3.0.0-next.6 [skip ci]
+
+# [3.0.0-next.6](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.0.0-next.5...v3.0.0-next.6) (2026-02-06)
+
+### Bug Fixes
+
+* showSheet model does not trigger watch https://github.com/megaarmos/vue-spring-bottom-sheet/issues/37 ([a72c5ff](https://github.com/megaarmos/vue-spring-bottom-sheet/commit/a72c5ff04ac22595be0a767414e5c91dfa8865d3))
+
 # [3.2.0](https://github.com/megaarmos/vue-spring-bottom-sheet/compare/v3.1.0...v3.2.0) (2026-03-23)
 
 
